@@ -1,432 +1,225 @@
-<!DOCTYPE HTML>
-<HTML>
+<!DOCTYPE html>
+<html lang="en">
 
-<HEAD>
-    <TITLE> Heart </TITLE>
-    <META NAME="Generator" CONTENT="EditPlus">
-    <META NAME="Author" CONTENT="">
-    <META NAME="Keywords" CONTENT="">
-    <META NAME="Description" CONTENT="">
-
-
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <style>
-        html,
-        body {
-            height: 100%;
-            padding: 0;
-            margin: 0;
-            background: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-        }
-
-        .box {
-            width: 100%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: flex;
-            flex-direction: column;
-        }
-
         canvas {
             position: absolute;
+            left: 0;
+            top: 0;
             width: 100%;
             height: 100%;
-        }
-
-        #pinkboard {
-            position: relative;
-            margin: auto;
-            height: 500px;
-            width: 500px;
-            animation: animate 1.3s infinite;
-        }
-
-        #pinkboard:before,
-        #pinkboard:after {
-            content: '';
-            position: absolute;
-            background: #FF5CA4;
-            width: 100px;
-            height: 160px;
-            border-top-left-radius: 50px;
-            border-top-right-radius: 50px;
-        }
-
-        #pinkboard:before {
-            left: 100px;
-            transform: rotate(-45deg);
-            transform-origin: 0 100%;
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.141),
-                0 10px 10px rgba(0, 0, 0, 0.22);
-        }
-
-        #pinkboard:after {
-            left: 0;
-            transform: rotate(45deg);
-            transform-origin: 100% 100%;
-        }
-
-        @keyframes animate {
-            0% {
-                transform: scale(1);
-            }
-
-            30% {
-                transform: scale(.8);
-            }
-
-            60% {
-                transform: scale(1.2);
-            }
-
-            100% {
-                transform: scale(1);
-            }
+            background-color: rgba(0, 0, 0, .2);
         }
     </style>
-</HEAD>
+</head>
 
-<BODY>
+<body>
+
     <audio autoplay loop>
-        <source src="MY.mp3" type="audio/mp3">
+        <source src="ido.mp3" type="audio/mp3">
     </audio>
-    <div class="box">
-        <canvas id="pinkboard"></canvas>
-    </div>
-
-    <script type="text/javascript">
-    <!-- Begin
-    function toSpans(span) {
-      var str=span.firstChild.data;
-      var a=str.length;
-      span.removeChild(span.firstChild);
-      for(var i=0; i<a; i++) {
-        var theSpan=document.createElement("SPAN");
-        theSpan.appendChild(document.createTextNode(str.charAt(i)));
-        span.appendChild(theSpan);
-      }
-    }
-
-    function RainbowSpan(span, hue, deg, brt, spd, hspd) {
-        this.deg=(deg==null?360:Math.abs(deg));
-        this.hue=(hue==null?0:Math.abs(hue)%360);
-        this.hspd=(hspd==null?3:Math.abs(hspd)%360);
-        this.length=span.firstChild.data.length;
-        this.span=span;
-        this.speed=(spd==null?50:Math.abs(spd));
-        this.hInc=this.deg/this.length;
-        this.brt=(brt==null?255:Math.abs(brt)%256);
-        this.timer=null;
-        toSpans(span);
-        this.moveRainbow();
-    }
-    RainbowSpan.prototype.moveRainbow = function() {
-      if(this.hue>359) this.hue-=360;
-      var color;
-      var b=this.brt;
-      var a=this.length;
-      var h=this.hue;
-
-      for(var i=0; i<a; i++) {
-
-        if(h>359) h-=360;
-
-        if(h<60) { color=Math.floor(((h)/60)*b); red=b;grn=color;blu=0; }
-        else if(h<120) { color=Math.floor(((h-60)/60)*b); red=b-color;grn=b;blu=0; }
-        else if(h<180) { color=Math.floor(((h-120)/60)*b); red=0;grn=b;blu=color; }
-        else if(h<240) { color=Math.floor(((h-180)/60)*b); red=0;grn=b-color;blu=b; }
-        else if(h<300) { color=Math.floor(((h-240)/60)*b); red=color;grn=0;blu=b; }
-        else { color=Math.floor(((h-300)/60)*b); red=b;grn=0;blu=b-color; }
-
-        h+=this.hInc;
-
-        this.span.childNodes[i].style.color="rgb("+red+", "+grn+", "+blu+")";
-      }
-      this.hue+=this.hspd;
-    }
-    </script>
+    <div style="font-size: 20px; width: 100%;height: 40vh;position: absolute;z-index: 100;">
+        <script type="text/javascript">
+            farbbibliothek = new Array();
+            // farbbibliothek[0] = new Array("#FF0000", "#FF1100", "#FF2200", "#FF3300", "#FF4400", "#FF5500", "#FF6600", "#FF7700", "#FF8800", "#FF9900", "#FFaa00", "#FFbb00", "#FFcc00", "#FFdd00", "#FFee00", "#FFff00", "#FFee00", "#FFdd00", "#FFcc00", "#FFbb00", "#FFaa00", "#FF9900", "#FF8800", "#FF7700", "#FF6600", "#FF5500", "#FF4400", "#FF3300", "#FF2200", "#FF1100");
+            // farbbibliothek[1] = new Array("#00FF00", "#000000", "#00FF00", "#00FF00");
+            // farbbibliothek[2] = new Array("#00FF00", "#FF0000", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00");
+            farbbibliothek[3] = new Array("#FF0000", "#FF4000", "#FF8000", "#FFC000", "#FFFF00", "#C0FF00", "#80FF00", "#40FF00", "#00FF00", "#00FF40", "#00FF80", "#00FFC0", "#00FFFF", "#00C0FF", "#0080FF", "#0040FF", "#0000FF", "#4000FF", "#8000FF", "#C000FF", "#FF00FF", "#FF00C0", "#FF0080", "#FF0040");
+            // farbbibliothek[4] = new Array("#FF0000", "#EE0000", "#DD0000", "#CC0000", "#BB0000", "#AA0000", "#990000", "#880000", "#770000", "#660000", "#550000", "#440000", "#330000", "#220000", "#110000", "#000000", "#110000", "#220000", "#330000", "#440000", "#550000", "#660000", "#770000", "#880000", "#990000", "#AA0000", "#BB0000", "#CC0000", "#DD0000", "#EE0000");
+            // farbbibliothek[5] = new Array("#000000", "#000000", "#000000", "#FFFFFF", "#FFFFFF", "#FFFFFF");
+            // farbbibliothek[6] = new Array("#0000FF", "#FFFF00");
+            farben = farbbibliothek[3];
+            
+            function string2array(b) { 
+                Buchstabe = new Array(); 
+                while (farben.length < b.length) { farben = farben.concat(farben) } 
+                k = 0; 
+                while (k <= b.length) { Buchstabe[k] = b.charAt(k); k++ } }
+            function divserzeugen() { 
+                for (var b = 0; b < Buchstabe.length; b++) { document.write("<span id='a" + b + "' class='a" + b + "'>" + Buchstabe[b] + "</span>") } farbschrift() } 
+            function farbschrift() { 
+                for (var b = 0; b < Buchstabe.length; b++) { document.all["a" + b].style.color = farben[b] } 
+                farbverlauf() } 
+            var a = 1; 
+            function farbverlauf() { for (var b = 0; b < farben.length; b++) { farben[b - 1] = farben[b]} farben[farben.length - 1] = farben[-1]; setTimeout("farbschrift()", 30) } //TỐC ĐỘ ĐỔI MÀU
+            var farbsatz = 1; 
+            function farbtauscher() { farben = farbbibliothek[farbsatz]; while (farben.length < text.length) { farben = farben.concat(farben) } farbsatz = Math.floor(Math.random() * (farbbibliothek.length - 0.0001)) } 
+            setInterval("farbtauscher()", 7200000);
+            text = "Trương Thị Huyền My";
+            string2array(text);
+            document.write("<div class='center-text' style='width: 100%;color: rgb(225, 12, 168);height:100%;font-size: 31px;font-style: italic;display: flex;align-items: center;justify-content: center;margin-bottom: 5px;text-align: center;'>");
+            divserzeugen();
+            document.write("</div>");
+            
+            
+        </script></div>
+    <canvas id="heart" />
     
-    <script type="text/javascript">
-    var r1=document.getElementById("r1"); //get span to apply rainbow
-    var myRainbowSpan=new RainbowSpan(r1, 0, 360, 255, 50, 18); //apply static rainbow effect
-    myRainbowSpan.timer=window.setInterval("myRainbowSpan.moveRainbow()", myRainbowSpan.speed);
-    </script>
-  
-  
-  
 
-  <script>
-  /*
- * Settings
- */
-    var settings = {
-        particles: {
-            length: 3000, // maximum amount of particles
-            duration: 1.7, // particle duration in sec
-            velocity: 117, // particle velocity in pixels/sec
-            effect: -1.5, // play with this for a nice effect
-            size: 13, // particle size in pixels
-        },
-    };
-    /*
-     * RequestAnimationFrame polyfill by Erik Möller
-     */
-    (function () { var b = 0; var c = ["ms", "moz", "webkit", "o"]; for (var a = 0; a < c.length && !window.requestAnimationFrame; ++a) { window.requestAnimationFrame = window[c[a] + "RequestAnimationFrame"]; window.cancelAnimationFrame = window[c[a] + "CancelAnimationFrame"] || window[c[a] + "CancelRequestAnimationFrame"] } if (!window.requestAnimationFrame) { window.requestAnimationFrame = function (h, e) { var d = new Date().getTime(); var f = Math.max(0, 16 - (d - b)); var g = window.setTimeout(function () { h(d + f) }, f); b = d + f; return g } } if (!window.cancelAnimationFrame) { window.cancelAnimationFrame = function (d) { clearTimeout(d) } } }());
-    /*
-     * Point class
-     */
-    var Point = (function () {
-        function Point(x, y) {
-            this.x = (typeof x !== 'undefined') ? x : 0;
-            this.y = (typeof y !== 'undefined') ? y : 0;
-        }
-        Point.prototype.clone = function () {
-            return new Point(this.x, this.y);
-        };
-        Point.prototype.length = function (length) {
-            if (typeof length == 'undefined')
-                return Math.sqrt(this.x * this.x + this.y * this.y);
-            this.normalize();
-            this.x *= length;
-            this.y *= length;
-            return this;
-        };
-        Point.prototype.normalize = function () {
-            var length = this.length();
-            this.x /= length;
-            this.y /= length;
-            return this;
-        };
-        return Point;
-    })();
-    /*
-     * Particle class
-     */
-    var Particle = (function () {
-        function Particle() {
-            this.position = new Point();
-            this.velocity = new Point();
-            this.acceleration = new Point();
-            this.age = 0;
-        }
-        Particle.prototype.initialize = function (x, y, dx, dy) {
-            this.position.x = x;
-            this.position.y = y;
-            this.velocity.x = dx;
-            this.velocity.y = dy;
-            this.acceleration.x = dx * settings.particles.effect;
-            this.acceleration.y = dy * settings.particles.effect;
-            this.age = 0;
-        };
-        Particle.prototype.update = function (deltaTime) {
-            this.position.x += this.velocity.x * deltaTime;
-            this.position.y += this.velocity.y * deltaTime;
-            this.velocity.x += this.acceleration.x * deltaTime;
-            this.velocity.y += this.acceleration.y * deltaTime;
-            this.age += deltaTime;
-        };
-        Particle.prototype.draw = function (context, image) {
-            function ease(t) {
-                return (--t) * t * t + 1;
-            }
-            var size = image.width * ease(this.age / settings.particles.duration);
-            context.globalAlpha = 1 - this.age / settings.particles.duration;
-            context.drawImage(image, this.position.x - size / 2, this.position.y - size / 2, size, size);
-        };
-        return Particle;
-    })();
-    /*
-     * ParticlePool class
-     */
-    var ParticlePool = (function () {
-        var particles,
-            firstActive = 0,
-            firstFree = 0,
-            duration = settings.particles.duration;
+    <script>
+        window.requestAnimationFrame =
+            window.__requestAnimationFrame ||
+            window.requestAnimationFrame ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame ||
+            window.oRequestAnimationFrame ||
+            window.msRequestAnimationFrame ||
+            (function () {
+                return function (callback, element) {
+                    var lastTime = element.__lastTime;
+                    if (lastTime === undefined) {
+                        lastTime = 0;
+                    }
+                    var currTime = Date.now();
+                    var timeToCall = Math.max(1, 33 - (currTime - lastTime));
+                    window.setTimeout(callback, timeToCall);
+                    element.__lastTime = currTime + timeToCall;
+                };
+            })();
+        window.isDevice = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(((navigator.userAgent || navigator.vendor || window.opera)).toLowerCase()));
+        var loaded = false;
+        var init = function () {
+            if (loaded) return;
+            loaded = true;
+            var mobile = window.isDevice;
+            var koef = mobile ? 0.5 : 1;
+            var canvas = document.getElementById('heart');
+            var ctx = canvas.getContext('2d');
+            var width = canvas.width = koef * innerWidth;
+            var height = canvas.height = koef * innerHeight;
+            var rand = Math.random;
+            ctx.fillStyle = "rgba(0,0,0,1)";
+            ctx.fillRect(0, 0, width, height);
 
-        function ParticlePool(length) {
-            // create and populate particle pool
-            particles = new Array(length);
-            for (var i = 0; i < particles.length; i++)
-                particles[i] = new Particle();
-        }
-        ParticlePool.prototype.add = function (x, y, dx, dy) {
-            particles[firstFree].initialize(x, y, dx, dy);
+            var heartPosition = function (rad) {
+                //return [Math.sin(rad), Math.cos(rad)];
+                return [Math.pow(Math.sin(rad), 3), -(15 * Math.cos(rad) - 5 * Math.cos(2 * rad) - 2 * Math.cos(3 * rad) - Math.cos(4 * rad))];
+            };
+            var scaleAndTranslate = function (pos, sx, sy, dx, dy) {
+                return [dx + pos[0] * sx, dy + pos[1] * sy];
+            };
 
-            // handle circular queue
-            firstFree++;
-            if (firstFree == particles.length) firstFree = 0;
-            if (firstActive == firstFree) firstActive++;
-            if (firstActive == particles.length) firstActive = 0;
-        };
-        ParticlePool.prototype.update = function (deltaTime) {
+            window.addEventListener('resize', function () {
+                width = canvas.width = koef * innerWidth;
+                height = canvas.height = koef * innerHeight;
+                ctx.fillStyle = "rgba(0,0,0,1)";
+                ctx.fillRect(0, 0, width, height);
+            });
+
+            var traceCount = mobile ? 20 : 50;
+            var pointsOrigin = [];
             var i;
+            var dr = mobile ? 0.3 : 0.1;
+            for (i = 0; i < Math.PI * 2; i += dr) pointsOrigin.push(scaleAndTranslate(heartPosition(i), 210, 13, 0, 0));
+            for (i = 0; i < Math.PI * 2; i += dr) pointsOrigin.push(scaleAndTranslate(heartPosition(i), 150, 9, 0, 0));
+            for (i = 0; i < Math.PI * 2; i += dr) pointsOrigin.push(scaleAndTranslate(heartPosition(i), 90, 5, 0, 0));
+            var heartPointsCount = pointsOrigin.length;
 
-            // update active particles
-            if (firstActive < firstFree) {
-                for (i = firstActive; i < firstFree; i++)
-                    particles[i].update(deltaTime);
+            var targetPoints = [];
+            var pulse = function (kx, ky) {
+                for (i = 0; i < pointsOrigin.length; i++) {
+                    targetPoints[i] = [];
+                    targetPoints[i][0] = kx * pointsOrigin[i][0] + width / 2;
+                    targetPoints[i][1] = ky * pointsOrigin[i][1] + height / 2;
+                }
+            };
+
+            var e = [];
+            for (i = 0; i < heartPointsCount; i++) {
+                var x = rand() * width;
+                var y = rand() * height;
+                e[i] = {
+                    vx: 0,
+                    vy: 0,
+                    R: 2,
+                    speed: rand() + 5,
+                    q: ~~(rand() * heartPointsCount),
+                    D: 2 * (i % 2) - 1,
+                    force: 0.2 * rand() + 0.7,
+                    f: "hsla(0," + ~~(40 * rand() + 60) + "%," + ~~(60 * rand() + 20) + "%,.3)",
+                    trace: []
+                };
+                for (var k = 0; k < traceCount; k++) e[i].trace[k] = { x: x, y: y };
             }
-            if (firstFree < firstActive) {
-                for (i = firstActive; i < particles.length; i++)
-                    particles[i].update(deltaTime);
-                for (i = 0; i < firstFree; i++)
-                    particles[i].update(deltaTime);
-            }
 
-            // remove inactive particles
-            while (particles[firstActive].age >= duration && firstActive != firstFree) {
-                firstActive++;
-                if (firstActive == particles.length) firstActive = 0;
-            }
+            var config = {
+                traceK: 0.4,
+                timeDelta: 0.01
+            };
 
+            var time = 0;
+            var loop = function () {
+                var n = -Math.cos(time);
+                pulse((1 + n) * .5, (1 + n) * .5);
+                time += ((Math.sin(time)) < 0 ? 9 : (n > 0.8) ? .2 : 1) * config.timeDelta;
+                ctx.fillStyle = "rgba(0,0,0,.1)";
+                ctx.fillRect(0, 0, width, height);
+                for (i = e.length; i--;) {
+                    var u = e[i];
+                    var q = targetPoints[u.q];
+                    var dx = u.trace[0].x - q[0];
+                    var dy = u.trace[0].y - q[1];
+                    var length = Math.sqrt(dx * dx + dy * dy);
+                    if (10 > length) {
+                        if (0.95 < rand()) {
+                            u.q = ~~(rand() * heartPointsCount);
+                        }
+                        else {
+                            if (0.99 < rand()) {
+                                u.D *= -1;
+                            }
+                            u.q += u.D;
+                            u.q %= heartPointsCount;
+                            if (0 > u.q) {
+                                u.q += heartPointsCount;
+                            }
+                        }
+                    }
+                    u.vx += -dx / length * u.speed;
+                    u.vy += -dy / length * u.speed;
+                    u.trace[0].x += u.vx;
+                    u.trace[0].y += u.vy;
+                    u.vx *= u.force;
+                    u.vy *= u.force;
+                    for (k = 0; k < u.trace.length - 1;) {
+                        var T = u.trace[k];
+                        var N = u.trace[++k];
+                        N.x -= config.traceK * (N.x - T.x);
+                        N.y -= config.traceK * (N.y - T.y);
+                    }
+                    ctx.fillStyle = u.f;
+                    for (k = 0; k < u.trace.length; k++) {
+                        ctx.fillRect(u.trace[k].x, u.trace[k].y, 1, 1);
+                    }
+                }
+                //ctx.fillStyle = "rgba(255,255,255,1)";
+                //for (i = u.trace.length; i--;) ctx.fillRect(targetPoints[i][0], targetPoints[i][1], 2, 2);
 
+                window.requestAnimationFrame(loop, canvas);
+            };
+            loop();
         };
-        ParticlePool.prototype.draw = function (context, image) {
-            // draw active particles
-            if (firstActive < firstFree) {
-                for (i = firstActive; i < firstFree; i++)
-                    particles[i].draw(context, image);
-            }
-            if (firstFree < firstActive) {
-                for (i = firstActive; i < particles.length; i++)
-                    particles[i].draw(context, image);
-                for (i = 0; i < firstFree; i++)
-                    particles[i].draw(context, image);
-            }
-        };
-        return ParticlePool;
-    })();
-    /*
-     * Putting it all together
-     */
-    (function (canvas) {
-        var context = canvas.getContext('2d'),
-            particles = new ParticlePool(settings.particles.length),
-            particleRate = settings.particles.length / settings.particles.duration, // particles/sec
-            time;
 
-        // get point on heart with -PI <= t <= PI
-        function pointOnHeart(t) {
-            return new Point(
-                160 * Math.pow(Math.sin(t), 3),
-                130 * Math.cos(t) - 50 * Math.cos(2 * t) - 20 * Math.cos(3 * t) - 10 * Math.cos(4 * t) + 25
-            );
-        }
+        var s = document.readyState;
+        if (s === 'complete' || s === 'loaded' || s === 'interactive') init();
+        else document.addEventListener('DOMContentLoaded', init, false);
+    </script>
+    <script type='text/javascript'> ! function (e, t, a) {
+            function rand() { return rand = ~~(20 * Math.random()) }
+            function n() { c(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), o(), r() }
+            function r() { for (var e = 0; e < d.length; e++) d[e].alpha <= 0 ? (t.body.removeChild(d[e].el), d.splice(e, 1)) : (d[e].y--, d[e].scale += .004, d[e].alpha -= .013, d[e].el.style.cssText = "left:" + d[e].x + "px;top:" + d[e].y + "px;opacity:" + d[e].alpha + ";transform:scale(" + d[e].scale + "," + d[e].scale + ") rotate(45deg);background:" + d[e].color + ";z-index:99999"); requestAnimationFrame(r) }
+            function o() { var t = "function" == typeof e.onmousemove && e.onmousemove; e.onmousemove = function (e) { t && t(), i(e) } }
+            function i(e) { var a = t.createElement("div"); var rand1 = ~~(20 * Math.random() * (-1 ^ Math.random())); var rand2 = ~~(20 * Math.random() * (-1 ^ Math.random())); a.className = "heart", d.push({ el: a, x: e.clientX - rand1, y: e.clientY - rand2, scale: 1, alpha: 1, color: s() }), t.body.appendChild(a) }
+            function c(e) { var a = t.createElement("style"); a.type = "text/css"; try { a.appendChild(t.createTextNode(e)) } catch (t) { a.styleSheet.cssText = e } t.getElementsByTagName("head")[0].appendChild(a) }
+            // function s() { return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")" } var d = []; e.requestAnimationFrame = function () { return e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) { setTimeout(e, 1e3 / 60) } }(), n() }(window, document);
+            function s() { return "rgb(" + 255 + "," + 0 + "," + 0 + ")" } var d = []; e.requestAnimationFrame = function () { return e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) { setTimeout(e, 1) } }(), n()
+        }(window, document);
+    </script>
+</body>
 
-        // creating the particle image using a dummy canvas
-        var image = (function () {
-            var canvas = document.createElement('canvas'),
-                context = canvas.getContext('2d');
-            canvas.width = settings.particles.size;
-            canvas.height = settings.particles.size;
-            // helper function to create the path
-            function to(t) {
-                var point = pointOnHeart(t);
-                point.x = settings.particles.size / 2 + point.x * settings.particles.size / 350;
-                point.y = settings.particles.size / 2 - point.y * settings.particles.size / 350;
-                return point;
-            }
-            // create the path
-            context.beginPath();
-            var t = -Math.PI;
-            var point = to(t);
-            context.moveTo(point.x, point.y);
-            while (t < Math.PI) {
-                t += 0.01; // baby steps!
-                point = to(t);
-                context.lineTo(point.x, point.y);
-            }
-            context.closePath();
-            // create the fill
-            context.fillStyle = '#a5ff5c';
-            context.fill();
-            // create the image
-            var image = new Image();
-            image.src = canvas.toDataURL();
-            return image;
-        })();
-
-        // render that thing!
-        function render() {
-            // next animation frame
-            requestAnimationFrame(render);
-
-            // update time
-            var newTime = new Date().getTime() / 1000,
-                deltaTime = newTime - (time || newTime);
-            time = newTime;
-
-            // clear canvas
-            context.clearRect(0, 0, canvas.width, canvas.height);
-
-            // create new particles
-            var amount = particleRate * deltaTime;
-            for (var i = 0; i < amount; i++) {
-                var pos = pointOnHeart(Math.PI - 2 * Math.PI * Math.random());
-                var dir = pos.clone().length(settings.particles.velocity);
-                particles.add(canvas.width / 2 + pos.x, canvas.height / 2 - pos.y, dir.x, -dir.y);
-            }
-
-            // update and draw particles
-            particles.update(deltaTime);
-            particles.draw(context, image);
-        }
-
-        // handle (re-)sizing of the canvas
-        function onResize() {
-            canvas.width = canvas.clientWidth;
-            canvas.height = canvas.clientHeight;
-        }
-        window.onresize = onResize;
-
-        // delay rendering bootstrap
-        setTimeout(function () {
-            onResize();
-            render();
-        }, 10);
-    })(document.getElementById('pinkboard'));
-</script>
-
-  <div style="font-size: 20px">
-<script type="text/javascript">
-    farbbibliothek = new Array();
-    // farbbibliothek[0] = new Array("#FF0000", "#FF1100", "#FF2200", "#FF3300", "#FF4400", "#FF5500", "#FF6600", "#FF7700", "#FF8800", "#FF9900", "#FFaa00", "#FFbb00", "#FFcc00", "#FFdd00", "#FFee00", "#FFff00", "#FFee00", "#FFdd00", "#FFcc00", "#FFbb00", "#FFaa00", "#FF9900", "#FF8800", "#FF7700", "#FF6600", "#FF5500", "#FF4400", "#FF3300", "#FF2200", "#FF1100");
-    // farbbibliothek[1] = new Array("#00FF00", "#000000", "#00FF00", "#00FF00");
-    // farbbibliothek[2] = new Array("#00FF00", "#FF0000", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00", "#00FF00");
-    farbbibliothek[3] = new Array("#FF0000", "#FF4000", "#FF8000", "#FFC000", "#FFFF00", "#C0FF00", "#80FF00", "#40FF00", "#00FF00", "#00FF40", "#00FF80", "#00FFC0", "#00FFFF", "#00C0FF", "#0080FF", "#0040FF", "#0000FF", "#4000FF", "#8000FF", "#C000FF", "#FF00FF", "#FF00C0", "#FF0080", "#FF0040");
-    // farbbibliothek[4] = new Array("#FF0000", "#EE0000", "#DD0000", "#CC0000", "#BB0000", "#AA0000", "#990000", "#880000", "#770000", "#660000", "#550000", "#440000", "#330000", "#220000", "#110000", "#000000", "#110000", "#220000", "#330000", "#440000", "#550000", "#660000", "#770000", "#880000", "#990000", "#AA0000", "#BB0000", "#CC0000", "#DD0000", "#EE0000");
-    // farbbibliothek[5] = new Array("#000000", "#000000", "#000000", "#FFFFFF", "#FFFFFF", "#FFFFFF");
-    // farbbibliothek[6] = new Array("#0000FF", "#FFFF00");
-    farben = farbbibliothek[3];
-    
-    function string2array(b) { 
-        Buchstabe = new Array(); 
-        while (farben.length < b.length) { farben = farben.concat(farben) } 
-        k = 0; 
-        while (k <= b.length) { Buchstabe[k] = b.charAt(k); k++ } }
-    function divserzeugen() { 
-        for (var b = 0; b < Buchstabe.length; b++) { document.write("<span id='a" + b + "' class='a" + b + "'>" + Buchstabe[b] + "</span>") } farbschrift() } 
-    function farbschrift() { 
-        for (var b = 0; b < Buchstabe.length; b++) { document.all["a" + b].style.color = farben[b] } 
-        farbverlauf() } 
-    var a = 1; 
-    function farbverlauf() { for (var b = 0; b < farben.length; b++) { farben[b - 1] = farben[b]} farben[farben.length - 1] = farben[-1]; setTimeout("farbschrift()", 30) } //TỐC ĐỘ ĐỔI MÀU
-    var farbsatz = 1; 
-    function farbtauscher() { farben = farbbibliothek[farbsatz]; while (farben.length < text.length) { farben = farben.concat(farben) } farbsatz = Math.floor(Math.random() * (farbbibliothek.length - 0.0001)) } 
-    setInterval("farbtauscher()", 7200000);
-    text = "Truong Thi Huyen My";
-    string2array(text);
-    document.write("<div class='center-text' style='background-color:rgb(0, 0, 0);width: 100%;color: rgb(225, 12, 168);height:100%;font-size: 31px;font-style: italic;display: flex;align-items: center;justify-content: center;margin-bottom: 5px;text-align: center;'>");
-    divserzeugen();
-    document.write("</div>");
-    
-    
-</script></div>
- </BODY>
-</HTML>
+</html>
